@@ -1,0 +1,70 @@
+
+/* Sidebar Base */
+    #appSidebar {
+        position: fixed;
+        top: 56px; /* for navbar */
+        left: 0;
+        width: 240px;
+        height: 100%;
+        overflow-y: auto;
+        background-color: #2d2f34;
+        color: #e2e8f0;
+        transition: transform 0.3s ease-in-out;
+        z-index: 1040;
+    }
+
+    /* Sidebar closed (mobile) */
+    #appSidebar.closed {
+        transform: translateX(-100%);
+    }
+
+    /* Main Menu */
+    .sidebar-menu > .nav-item > .nav-link {
+        font-size: 15px;
+        font-weight: 450;
+        color: #e2e8f0;
+        padding: 8px 14px;
+        transition: all 0.3s;
+        border-radius: 6px;
+        margin: 2px 6px;
+    }
+
+    .sidebar-menu > .nav-item > .nav-link:hover {
+        background: rgba(190, 183, 183, 0.1);
+        color: #fff;
+    }
+
+    /* Submenu */
+    .nav-treeview .nav-link {
+        font-size: 10px;
+        padding: 6px 32px;
+        color: #cbd5e1;
+        transition: all 0.2s;
+    }
+
+    .nav-treeview .nav-link:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 5px;
+    }
+
+    /* Smooth open/close animation */
+    .nav-treeview {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .menu-open > .nav-treeview {
+        max-height: 400px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        #appSidebar {
+            transform: translateX(-100%);
+        }
+        #appSidebar.open {
+            transform: translateX(0);
+        }
+    }
