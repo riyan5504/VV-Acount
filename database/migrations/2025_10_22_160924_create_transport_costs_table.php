@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('transport_costs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pro_id');
+            $table->string('transport_type')->nullable();
+            $table->double('transport_amt')->nullable();
             $table->timestamps();
         });
     }

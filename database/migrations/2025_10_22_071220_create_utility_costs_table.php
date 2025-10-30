@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pro_id');
             $table->string('utility_name')->nullable();
-            $table->string('utility_type')->nullable();
             $table->double('cost_amt')->nullable();
             $table->timestamps();
         });

@@ -22,28 +22,63 @@
 
                 <!-- Purchase Menu -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{url('/purchase')}}" class="nav-link">
                         <i class="nav-icon bi bi-cart-check text-primary"></i>
                         <p>Purchase <i class="nav-arrow bi bi-chevron-right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item"><a href="{{url('/purchase/create')}}" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Add New</p></a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>List</p></a></li>
+                        <li class="nav-item">
+                            <a href="{{url('/purchase/create')}}" class="nav-link">
+                                <i class="nav-icon bi bi-plus-circle"></i>
+                                <p>Add New</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-card-list"></i>
+                                <p>List</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
                 <!-- Manufacturing Menu -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{url('/production')}}" class="nav-link">
                         <i class="nav-icon bi bi-building-fill-gear text-info"></i>
                         <p>Manufacturing <i class="nav-arrow bi bi-chevron-right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item"><a href="{{ url('/production/product/add') }}" class="nav-link"><i class="nav-icon bi bi-bag"></i><p>Products</p></a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-tags"></i><p>Raw Materials</p></a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-people nav-icon"></i><p>Production Batches</p></a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-person-circle"></i><p>Costing</p></a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-buildings"></i><p>Report</p></a></li>
+                        <li class="nav-item">
+                            <a href="{{ url('/production/product/add') }}" class="nav-link">
+                                <i class="nav-icon bi bi-bag"></i>
+                                <p>Products</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-tags"></i>
+                                <p>Raw Materials</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="bi bi-people nav-icon"></i>
+                                <p>Production Batches</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-person-circle"></i>
+                                <p>Costing</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-buildings"></i>
+                                <p>Report</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -51,11 +86,14 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-graph-up-arrow text-success"></i>
-                        <p>Sales <i class="nav-arrow bi bi-chevron-right"></i></p>
+                        <p>
+                            Sales 
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Add New</p></a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>List</p></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-plus-circle"></i><p>Add New</p></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-card-list"></i><p>List</p></a></li>
                     </ul>
                 </li>
 
@@ -66,8 +104,8 @@
                         <p>HR & Payroll <i class="nav-arrow bi bi-chevron-right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Add New</p></a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>List</p></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-plus-circle"></i><p>Add New</p></a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-card-list"></i><p>List</p></a></li>
                     </ul>
                 </li>
 
@@ -109,7 +147,7 @@
 
                 <!-- Settings Menu -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{url('/settings')}}" class="nav-link">
                         <i class="nav-icon bi bi-sliders text-muted"></i>
                         <p>Settings <i class="nav-arrow bi bi-chevron-right"></i></p>
                     </a>

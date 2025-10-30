@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <label for="code" class="form-label">Item Code</label>
-                                        <input type="text" name="code" class="form-control" id="code" required />
+                                        <input type="text" name="code" class="form-control" id="code" readonly placeholder="Auto generated" />
                                     </div>
                                     <div class="col-md-4 mb-3">
                                         <label for="name" class="form-label">Item Name</label>

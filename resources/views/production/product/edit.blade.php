@@ -33,113 +33,131 @@
                     <!--begin::Quick Example-->
                     <div class="card card-primary card-outline mb-4">
                         <!--begin::Form-->
-                        <form action="{{ url('/production/product/store') }}" method="POST">
+                        <form action="{{ url('/production/update/'.$production->id) }}" method="POST">
                             @csrf
                             <!--begin::Product-->
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
                                         <label for="date" class="form-label">Production Date</label>
-                                        <input type="date" name="date" class="form-control" id="date" required />
+                                        <input type="date" name="date" value="{{ $production->date }}"
+                                            class="form-control" id="date" required />
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label for="name" class="form-label">Product Name</label>
-                                        <input type="text" name="name" class="form-control" id="name" required />
+                                        <input type="text" name="name" value="{{ $production->name }}"
+                                            class="form-control" id="name" required />
                                     </div>
 
                                     <div class="col-md-3 mb-3">
                                         <label for="batch_no" class="form-label">Batch Number</label>
-                                        <input type="text" name="batch_no" class="form-control" id="batch_no"
-                                            value="{{ $nextBatch }}" readonly />
+                                        <input type="text" name="batch_no" value="{{ $production->batch_no }}"
+                                            class="form-control" id="batch_no" value="" readonly />
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label for="batch_size" class="form-label">Batch Size</label>
-                                        <input type="text" name="batch_size" class="form-control" id="batch_size"
-                                            readonly />
+                                        <input type="text" name="batch_size" value="{{ $production->batch_size }}"
+                                            class="form-control" id="batch_size" readonly />
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="raw_qty" class="form-label">Raw Qty</label>
-                                        <input type="number" name="raw_qty" class="form-control" id="raw_qty" required />
+                                        <input type="number" name="raw_qty" value="{{ $production->raw_qty }}"
+                                            class="form-control" id="raw_qty" required />
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="raw_unit" class="form-label">Unit</label>
                                         <select name="raw_unit" class="form-control" id="raw_unit">
-                                            <option selected disabled>Select Unit</option>
-                                            <option value="ml">ml</option>
-                                            <option value="gm">gm</option>
-                                            <option value="kg">Kg</option>
-                                            <option value="ltr">Ltr</option>
+                                            <option value="ml" @if ($production->raw_unit == 'ml') selected @endif>ml
+                                            </option>
+                                            <option value="gm" @if ($production->raw_unit == 'gm') selected @endif>gm
+                                            </option>
+                                            <option value="Kg" @if ($production->raw_unit == 'Kg') selected @endif>Kg
+                                            </option>
+                                            <option value="Ltr" @if ($production->raw_unit == 'Ltr') selected @endif>Ltr
+                                            </option>
                                         </select>
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="raw_u_price" class="form-label">Unit Price</label>
-                                        <input type="number" step="0.01" name="raw_u_price" class="form-control"
-                                            id="raw_u_price" />
+                                        <input type="number" step="0.01" name="raw_u_price"
+                                            value="{{ $production->raw_u_price }}" class="form-control" id="raw_u_price" />
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="raw_t_price" class="form-label">Total Price</label>
-                                        <input type="number" step="0.01" name="raw_t_price" class="form-control"
-                                            id="raw_t_price" readonly />
+                                        <input type="number" step="0.01" name="raw_t_price"
+                                            value="{{ $production->raw_t_price }}" class="form-control" id="raw_t_price"
+                                            readonly />
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="pulp" class="form-label">Pulp</label>
-                                        <input type="number" name="pulp" class="form-control" id="pulp" />
+                                        <input type="number" name="pulp" value="{{ $production->pulp }}"
+                                            class="form-control" id="pulp" />
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="pulp_unit" class="form-label">Unit</label>
                                         <select name="pulp_unit" class="form-control" id="pulp_unit">
-                                            <option selected disabled>Select Unit</option>
-                                            <option value="ml">ml</option>
-                                            <option value="gm">gm</option>
-                                            <option value="kg">Kg</option>
-                                            <option value="ltr">Ltr</option>
+                                            <option value="ml" @if ($production->pulp_unit == 'ml') selected @endif>ml
+                                            </option>
+                                            <option value="gm" @if ($production->pulp_unit == 'gm') selected @endif>gm
+                                            </option>
+                                            <option value="Kg" @if ($production->pulp_unit == 'Kg') selected @endif>Kg
+                                            </option>
+                                            <option value="Ltr" @if ($production->pulp_unit == 'Ltr') selected @endif>Ltr
+                                            </option>
                                         </select>
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="yield" class="form-label">Yield Qty</label>
-                                        <input type="number" name="yield" class="form-control" id="yield" />
+                                        <input type="number" name="yield" value="{{ $production->yield }}"
+                                            class="form-control" id="yield" />
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="yield_unit" class="form-label">Unit</label>
                                         <select name="yield_unit" class="form-control" id="yield_unit">
-                                            <option selected disabled>Select Unit</option>
-                                            <option value="ml">ml</option>
-                                            <option value="gm">gm</option>
-                                            <option value="kg">Kg</option>
-                                            <option value="ltr">Ltr</option>
+                                            <option value="ml" @if ($production->yield_unit == 'ml') selected @endif>ml
+                                            </option>
+                                            <option value="gm" @if ($production->yield_unit == 'gm') selected @endif>gm
+                                            </option>
+                                            <option value="Kg" @if ($production->yield_unit == 'Kg') selected @endif>Kg
+                                            </option>
+                                            <option value="Ltr" @if ($production->yield_unit == 'Ltr') selected @endif>Ltr
+                                            </option>
                                         </select>
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="ex_qty" class="form-label">Extract Qty</label>
-                                        <input type="number" step="0.01" name="ex_qty" class="form-control"
-                                            id="ex_qty" />
+                                        <input type="number" step="0.01" value="{{ $production->ex_qty }}"
+                                            name="ex_qty" class="form-control" id="ex_qty" />
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="ex_unit" class="form-label">Unit</label>
                                         <select name="ex_unit" class="form-control" id="ex_unit">
-                                            <option selected disabled>Select Unit</option>
-                                            <option value="ml">ml</option>
-                                            <option value="gm">gm</option>
-                                            <option value="kg">Kg</option>
-                                            <option value="ltr">Ltr</option>
+                                            <option value="ml" @if ($production->ex_unit == 'ml') selected @endif>ml
+                                            </option>
+                                            <option value="gm" @if ($production->ex_unit == 'gm') selected @endif>gm
+                                            </option>
+                                            <option value="Kg" @if ($production->ex_unit == 'Kg') selected @endif>Kg
+                                            </option>
+                                            <option value="Ltr" @if ($production->ex_unit == 'Ltr') selected @endif>Ltr
+                                            </option>
                                         </select>
                                     </div>
 
                                     <div class="col-md-2 mb-3">
                                         <label for="yield_percent" class="form-label">Extract Yield
                                             (%)</label>
-                                        <input type="number" step="0.01" name="yield_percent" class="form-control"
-                                            id="yield_percent" readonly />
+                                        <input type="number" step="0.01" value="{{ $production->yield_percent }}"
+                                            name="yield_percent" class="form-control" id="yield_percent" readonly />
                                     </div>
                                 </div>
                                 <!--end::Product-->
@@ -154,50 +172,56 @@
                                     </div>
 
                                     <!-- ✅ First Row (with labels) -->
-                                    <div class="raw-material-row ms-1 row g-2">
-                                        <div class="col-md-3">
-                                            <label for="raw_name" class="form-label">Chemical Name</label>
-                                            <select name="raw_name[]" class="form-control raw_name">
-                                                <option selected disabled>select Chemical</option>
-                                                @foreach ($items as $item)
-                                                    <option value="{{ $item->name }}" data-price="{{ $item->price }}">
-                                                        {{ $item->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                    @if ($production->rawMaterial && count($production->rawMaterial) > 0)
+                                        <div class="raw-material-row ms-1 row g-2">
+                                            @foreach ($production->rawMaterial as $singleRaw)
+                                                <div class="col-md-3">
+                                                    <label for="raw_name" class="form-label">Chemical Name</label>
+                                                    <select name="raw_name[]" class="form-control raw_name">
+                                                        <option value="{{ $singleRaw->raw_name }}">
+                                                            {{ $singleRaw->raw_name }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="used_percent" class="form-label">Used (%)</label>
+                                                    <input type="number" step="0.01"
+                                                        value="{{ $singleRaw->used_percent }}" name="used_percent[]"
+                                                        class="form-control used_percent" id="used_percent"
+                                                        placeholder="Used (%)" />
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="used_qty" class="form-label">Used Qty</label>
+                                                    <input type="number" step="0.01"
+                                                        value="{{ $singleRaw->used_qty }}" name="used_qty[]"
+                                                        class="form-control used_qty" id="used_qty"
+                                                        placeholder="Used Qty" readonly />
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="u_price" class="form-label">Unit Price</label>
+                                                    <input type="number" step="0.01"
+                                                        value="{{ $singleRaw->u_price }}" name="u_price[]"
+                                                        class="form-control u_price" placeholder="Unit Price" readonly />
+                                                </div>
+                                                <div class="col-md-3 d-flex">
+                                                    <div class="w-100">
+                                                        <label for="t_price" class="form-label">Total Price</label>
+                                                        <input type="number" step="0.01"
+                                                            value="{{ $singleRaw->t_price }}" name="t_price[]"
+                                                            class="form-control t_price" id="t_price"
+                                                            placeholder="Total Price" readonly />
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 removeRawMaterial mt-auto">×</button>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-2">
-                                            <label for="used_percent" class="form-label">Used (%)</label>
-                                            <input type="number" step="0.01" name="used_percent[]"
-                                                class="form-control used_percent" id="used_percent"
-                                                placeholder="Used (%)" />
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="used_qty" class="form-label">Used Qty</label>
-                                            <input type="number" step="0.01" name="used_qty[]"
-                                                class="form-control used_qty" id="used_qty" placeholder="Used Qty"
-                                                readonly />
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="u_price" class="form-label">Unit Price</label>
-                                            <input type="number" step="0.01" name="u_price[]"
-                                                class="form-control u_price" placeholder="Unit Price" readonly />
-                                        </div>
-                                        <div class="col-md-3 d-flex">
-                                            <div class="w-100">
-                                                <label for="t_price" class="form-label">Total Price</label>
-                                                <input type="number" step="0.01" name="t_price[]"
-                                                    class="form-control t_price" id="t_price" placeholder="Total Price"
-                                                    readonly />
-                                            </div>
-                                            <button type="button"
-                                                class="btn btn-danger btn-sm ms-2 removeRawMaterial mt-auto">×</button>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-4 mt-1 mb-2">
                                     <label for="raw_grand_price" class="form-label">Total Chemical Cost</label>
-                                    <input type="number" step="0.01" name="raw_grand_price"
+                                    <input type="number" step="0.01"
+                                        value="{{ $production->productionGp->raw_grand_price }}" name="raw_grand_price"
                                         class="form-control raw_grand_price" id="raw_grand_price" readonly />
                                 </div>
                                 <!--end::Raw Material-->
@@ -212,37 +236,46 @@
                                     </div>
 
                                     <!-- ✅ First Row (with labels) -->
-                                    <div class="labor-row row ms-1 g-2">
-                                        <div class="col-md-3">
-                                            <label for="labor_name" class="form-label">Name</label>
-                                            <input type="text" name="labor_name[]" id="labor_name"
-                                                class="form-control" />
+                                    @if ($production->laborCost && count($production->laborCost) > 0)
+                                        <div class="labor-row row ms-1 g-2">
+                                            @foreach ($production->laborCost as $labor)
+                                                <div class="col-md-3">
+                                                    <label for="labor_name" class="form-label">Name</label>
+                                                    <input type="text" name="labor_name[]"
+                                                        value="{{ $labor->labor_name }}" id="labor_name"
+                                                        class="form-control" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label for="duty_day" class="form-label">Total Duty Day</label>
+                                                    <input type="number" name="duty_day[]"
+                                                        value="{{ $labor->duty_day }}" class="form-control duty_day"
+                                                        id="duty_day" />
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label for="d_pay" class="form-label">Daily Pay</label>
+                                                    <input type="number" step="0.01" value="{{ $labor->d_pay }}"
+                                                        name="d_pay[]" class="form-control d_pay" id="d_pay" />
+                                                </div>
+                                                <div class="col-md-3 d-flex">
+                                                    <div class="w-100">
+                                                        <label for="total_pay" class="form-label">Total Pay</label>
+                                                        <input type="number" step="0.01"
+                                                            value="{{ $labor->total_pay }}" name="total_pay[]"
+                                                            class="form-control total_pay" id="total_pay" readonly />
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 removeLabor mt-auto">×</button>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-3">
-                                            <label for="duty_day" class="form-label">Total Duty Day</label>
-                                            <input type="number" name="duty_day[]" class="form-control duty_day"
-                                                id="duty_day" />
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="d_pay" class="form-label">Daily Pay</label>
-                                            <input type="number" step="0.01" name="d_pay[]"
-                                                class="form-control d_pay" id="d_pay" />
-                                        </div>
-                                        <div class="col-md-3 d-flex">
-                                            <div class="w-100">
-                                                <label for="total_pay" class="form-label">Total Pay</label>
-                                                <input type="number" step="0.01" name="total_pay[]"
-                                                    class="form-control total_pay" id="total_pay" readonly />
-                                            </div>
-                                            <button type="button"
-                                                class="btn btn-danger btn-sm ms-2 removeLabor mt-auto">×</button>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-4 mt-1 mb-2">
                                     <label for="labor_grand_price" class="form-label">Total Labor Cost</label>
-                                    <input type="number" step="0.01" name="labor_grand_price"
-                                        class="form-control labor_grand_price" id="labor_grand_price" readonly />
+                                    <input type="number" step="0.01"
+                                        value="{{ $production->productionGp->labor_grand_price }}"
+                                        name="labor_grand_price" class="form-control labor_grand_price"
+                                        id="labor_grand_price" readonly />
                                 </div>
                                 <!--end::Labor Cost-->
 
@@ -256,49 +289,56 @@
                                     </div>
 
                                     <!-- ✅ First Row (with labels) -->
-                                    <div class="pack-row row ms-1 g-2">
-                                        <div class="col-md-3">
-                                            <label for="pack_name" class="form-label">Name</label>
-                                            {{-- <input type="text" name="pack_name[]" id="pack_name" class="form-control"
+                                    @if ($production->packagingMaterial && count($production->packagingMaterial) > 0)
+                                        <div class="pack-row row ms-1 g-2">
+                                            @foreach ($production->packagingMaterial as $singlePackag)
+                                                <div class="col-md-3">
+                                                    <label for="pack_name" class="form-label">Name</label>
+                                                    {{-- <input type="text" name="pack_name[]" id="pack_name" class="form-control"
                                                 required /> --}}
-                                            <select name="pack_name[]" class="form-control pack_name">
-                                                <option selected disabled>Select Packaging Material</option>
-                                                @foreach ($items as $item)
-                                                    <option value="{{ $item->name }}" data-price="{{ $item->price }}">
-                                                        {{ $item->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                                    <select name="pack_name[]" class="form-control pack_name">
+                                                        <option value="{{ $singlePackag->pack_name }}">
+                                                            {{ $singlePackag->pack_name }}
+                                                        </option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="pack_qty" class="form-label">Quantity</label>
+                                                    <input type="number" value="{{ $singlePackag->pack_qty }}"
+                                                        step="0.01" name="pack_qty[]" class="form-control pack_qty"
+                                                        id="pack_qty" />
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="pack_size" class="form-label">Size</label>
+                                                    <input type="text" step="0.01"
+                                                        value="{{ $singlePackag->pack_size }}" name="pack_size[]"
+                                                        class="form-control pack_size" id="pack_size" />
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label for="pack_price" class="form-label">Unit Price</label>
+                                                    <input type="number" step="0.01"
+                                                        value="{{ $singlePackag->pack_price }}" name="pack_price[]"
+                                                        class="form-control pack_price" id="pack_price" readonly />
+                                                </div>
+                                                <div class="col-md-3 d-flex">
+                                                    <div class="w-100">
+                                                        <label for="total_price" class="form-label">Total Price</label>
+                                                        <input type="number" step="0.01"
+                                                            value="{{ $singlePackag->total_price }}" name="total_price[]"
+                                                            class="form-control total_price" id="total_price" readonly />
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 removePack mt-auto">×</button>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-2">
-                                            <label for="pack_qty" class="form-label">Quantity</label>
-                                            <input type="number" step="0.01" name="pack_qty[]"
-                                                class="form-control pack_qty" id="pack_qty" />
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="pack_size" class="form-label">Size</label>
-                                            <input type="text" step="0.01" name="pack_size[]"
-                                                class="form-control pack_size" id="pack_size" />
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label for="pack_price" class="form-label">Unit Price</label>
-                                            <input type="number" step="0.01" name="pack_price[]"
-                                                class="form-control pack_price" id="pack_price" readonly />
-                                        </div>
-                                        <div class="col-md-3 d-flex">
-                                            <div class="w-100">
-                                                <label for="total_price" class="form-label">Total Price</label>
-                                                <input type="number" step="0.01" name="total_price[]"
-                                                    class="form-control total_price" id="total_price" readonly />
-                                            </div>
-                                            <button type="button"
-                                                class="btn btn-danger btn-sm ms-2 removePack mt-auto">×</button>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-4 mt-1 mb-2">
                                     <label for="pack_grand_price" class="form-label">Total Packaging Cost</label>
                                     <input type="number" step="0.01" name="pack_grand_price"
+                                        value="{{ $production->productionGp->pack_grand_price }}"
                                         class="form-control pack_grand_price" id="pack_grand_price" readonly />
                                 </div>
                                 <!--end::Packaging Material-->
@@ -313,26 +353,32 @@
                                     </div>
 
                                     <!-- ✅ First Row (with labels) -->
-                                    <div class="utility-row row ms-1 g-2">
-                                        <div class="col-md-8">
-                                            <label for="utility_name" class="form-label">Name</label>
-                                            <input type="text" name="utility_name[]" id="utility_name"
-                                                class="form-control" />
+                                    @if ($production->utilityCost && count($production->utilityCost) > 0)
+                                        <div class="utility-row row ms-1 g-2">
+                                            @foreach ($production->utilityCost as $singleUtility)
+                                                <div class="col-md-8">
+                                                    <label for="utility_name" class="form-label">Name</label>
+                                                    <input type="text" value="{{ $singleUtility->utility_name }}"
+                                                        name="utility_name[]" id="utility_name" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4 d-flex">
+                                                    <div class="w-100">
+                                                        <label for="cost_amt" class="form-label">Cost Amount</label>
+                                                        <input type="number" step="0.01"
+                                                            value="{{ $singleUtility->cost_amt }}" name="cost_amt[]"
+                                                            class="form-control cost_amt" id="cost_amt" />
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 removeUtility mt-auto">×</button>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-4 d-flex">
-                                            <div class="w-100">
-                                                <label for="cost_amt" class="form-label">Cost Amount</label>
-                                                <input type="number" step="0.01" name="cost_amt[]"
-                                                    class="form-control cost_amt" id="cost_amt" />
-                                            </div>
-                                            <button type="button"
-                                                class="btn btn-danger btn-sm ms-2 removeUtility mt-auto">×</button>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-4 mt-1 mb-2">
                                     <label for="utility_grand_price" class="form-label">Total Utility Cost</label>
                                     <input type="number" step="0.01" name="utility_grand_price"
+                                        value="{{ $production->productionGp->utility_grand_price }}"
                                         class="form-control utility_grand_price" id="utility_grand_price" readonly />
                                 </div>
                                 <!--end::Utility Cost-->
@@ -347,34 +393,44 @@
                                     </div>
 
                                     <!-- ✅ First Row (with labels) -->
-                                    <div class="machine-row row ms-1 g-2">
-                                        <div class="col-md-4">
-                                            <label for="machine_name" class="form-label">Machine Name</label>
-                                            <input type="text" name="machine_name[]" id="machine_name"
-                                                class="form-control" />
+                                    @if ($production->depreciation && count($production->depreciation) > 0)
+                                        <div class="machine-row row ms-1 g-2">
+                                            @foreach ($production->depreciation as $singleDep)
+                                                <div class="col-md-4">
+                                                    <label for="machine_name" class="form-label">Machine Name</label>
+                                                    <input type="text" value="{{ $singleDep->machine_name }}"
+                                                        name="machine_name[]" id="machine_name" class="form-control" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="depreciation_rate" class="form-label">Depreciation
+                                                        Rate</label>
+                                                    <input type="number" value="{{ $singleDep->depreciation_rate }}"
+                                                        name="depreciation_rate[]" class="form-control depreciation_rate"
+                                                        id="depreciation_rate" />
+                                                </div>
+                                                <div class="col-md-4 d-flex">
+                                                    <div class="w-100">
+                                                        <label for="machine_cost_amt" class="form-label">Cost
+                                                            Amount</label>
+                                                        <input type="number" step="0.01"
+                                                            value="{{ $singleDep->machine_cost_amt }}"
+                                                            name="machine_cost_amt[]"
+                                                            class="form-control machine_cost_amt" id="machine_cost_amt" />
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 removeMachine mt-auto">×</button>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-4">
-                                            <label for="depreciation_rate" class="form-label">Depreciation Rate</label>
-                                            <input type="number" name="depreciation_rate[]"
-                                                class="form-control depreciation_rate" id="depreciation_rate" />
-                                        </div>
-                                        <div class="col-md-4 d-flex">
-                                            <div class="w-100">
-                                                <label for="machine_cost_amt" class="form-label">Cost Amount</label>
-                                                <input type="number" step="0.01" name="machine_cost_amt[]"
-                                                    class="form-control machine_cost_amt" id="machine_cost_amt" />
-                                            </div>
-                                            <button type="button"
-                                                class="btn btn-danger btn-sm ms-2 removeMachine mt-auto">×</button>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-4 mt-1 mb-2">
                                     <label for="depreciation_grand_price" class="form-label">Total Depreciation
                                         Cost</label>
-                                    <input type="number" step="0.01" name="depreciation_grand_price"
-                                        class="form-control depreciation_grand_price" id="depreciation_grand_price"
-                                        readonly />
+                                    <input type="number" step="0.01"
+                                        value="{{ $production->productionGp->depreciation_grand_price }}"
+                                        name="depreciation_grand_price" class="form-control depreciation_grand_price"
+                                        id="depreciation_grand_price" readonly />
                                 </div>
                                 <!--end::Machinery Depreciation Cost-->
 
@@ -388,26 +444,32 @@
                                     </div>
 
                                     <!-- ✅ First Row (with labels) -->
-                                    <div class="overhead-row row ms-1 g-2">
-                                        <div class="col-md-9">
-                                            <label for="overhead_type" class="form-label">Description</label>
-                                            <textarea name="overhead_type[]" class="form-control overhead_type" rows="1" id="overhead_type"></textarea>
+                                    @if ($production->overheadCost && count($production->overheadCost) > 0)
+                                        <div class="overhead-row row ms-1 g-2">
+                                            @foreach ($production->overheadCost as $singleOverhead)
+                                                <div class="col-md-9">
+                                                    <label for="overhead_type" class="form-label">Description</label>
+                                                    <textarea name="overhead_type[]" class="form-control overhead_type" rows="1" id="overhead_type">{{ $singleOverhead->overhead_type }}</textarea>
+                                                </div>
+                                                <div class="col-md-3 d-flex">
+                                                    <div class="w-100">
+                                                        <label for="fo_cost_amt" class="form-label">Cost Amount</label>
+                                                        <input type="number" value="{{ $singleOverhead->fo_cost_amt }}"
+                                                            step="0.01" name="fo_cost_amt[]"
+                                                            class="form-control fo_cost_amt" id="fo_cost_amt" />
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 removeOverhead mt-auto">×</button>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-3 d-flex">
-                                            <div class="w-100">
-                                                <label for="fo_cost_amt" class="form-label">Cost Amount</label>
-                                                <input type="number" step="0.01" name="fo_cost_amt[]"
-                                                    class="form-control fo_cost_amt" id="fo_cost_amt" />
-                                            </div>
-                                            <button type="button"
-                                                class="btn btn-danger btn-sm ms-2 removeOverhead mt-auto">×</button>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-4 mt-1 mb-2">
                                     <label for="overhead_grand_price" class="form-label">Total Overhead
                                         Cost</label>
                                     <input type="number" step="0.01" name="overhead_grand_price"
+                                        value="{{ $production->productionGp->overhead_grand_price }}"
                                         class="form-control overhead_grand_price" id="overhead_grand_price" readonly />
                                 </div>
                                 <!--end::Factory Overhead Cost-->
@@ -422,27 +484,35 @@
                                     </div>
 
                                     <!-- ✅ First Row (with labels) -->
-                                    <div class="transport-row row ms-1 g-2">
-                                        <div class="col-md-9">
-                                            <label for="transport_type" class="form-label">Transport Type</label>
-                                            <input type="text" name="transport_type[]"
-                                                class="form-control transport_type" id="transport_type" />
+                                    @if ($production->transportCost && count($production->transportCost) > 0)
+                                        <div class="transport-row row ms-1 g-2">
+                                            @foreach ($production->transportCost as $singleTransport)
+                                                <div class="col-md-9">
+                                                    <label for="transport_type" class="form-label">Transport Type</label>
+                                                    <input type="text" value="{{ $singleTransport->transport_type }}"
+                                                        name="transport_type[]" class="form-control transport_type"
+                                                        id="transport_type" />
+                                                </div>
+                                                <div class="col-md-3 d-flex">
+                                                    <div class="w-100">
+                                                        <label for="transport_amt" class="form-label">Cost Amount</label>
+                                                        <input type="number"
+                                                            value="{{ $singleTransport->transport_amt }}" step="0.01"
+                                                            name="transport_amt[]" class="form-control transport_amt"
+                                                            id="transport_amt" />
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 removeTransport mt-auto">×</button>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-3 d-flex">
-                                            <div class="w-100">
-                                                <label for="transport_amt" class="form-label">Cost Amount</label>
-                                                <input type="number" step="0.01" name="transport_amt[]"
-                                                    class="form-control transport_amt" id="transport_amt" />
-                                            </div>
-                                            <button type="button"
-                                                class="btn btn-danger btn-sm ms-2 removeTransport mt-auto">×</button>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-4 mt-1 mb-2">
                                     <label for="transport_grand_price" class="form-label">Total Transport
                                         Cost</label>
                                     <input type="number" step="0.01" name="transport_grand_price"
+                                        value="{{ $production->productionGp->transport_grand_price }}"
                                         class="form-control transport_grand_price" id="transport_grand_price" readonly />
                                 </div>
                                 <!--end::transport Cost-->
@@ -457,27 +527,34 @@
                                     </div>
 
                                     <!-- ✅ First Row (with labels) -->
-                                    <div class="qc-row row g-2 ms-1">
-                                        <div class="col-md-9">
-                                            <label for="test_name" class="form-label">Test Name</label>
-                                            <input type="text" name="test_name[]" class="form-control test_name"
-                                                id="test_name" />
+                                    @if ($production->qcCost && count($production->qcCost) > 0)
+                                        <div class="qc-row row g-2 ms-1">
+                                            @foreach ($production->qcCost as $singleQc)
+                                                <div class="col-md-9">
+                                                    <label for="test_name" class="form-label">Test Name</label>
+                                                    <input type="text" value="{{ $singleQc->test_name }}"
+                                                        name="test_name[]" class="form-control test_name"
+                                                        id="test_name" />
+                                                </div>
+                                                <div class="col-md-3 d-flex">
+                                                    <div class="w-100">
+                                                        <label for="qc_amt" class="form-label">Cost Amount</label>
+                                                        <input type="number" value="{{ $singleQc->qc_amt }}"
+                                                            step="0.01" name="qc_amt[]" class="form-control qc_amt"
+                                                            id="qc_amt" />
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-danger btn-sm ms-2 removeQc mt-auto">×</button>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-md-3 d-flex">
-                                            <div class="w-100">
-                                                <label for="qc_amt" class="form-label">Cost Amount</label>
-                                                <input type="number" step="0.01" name="qc_amt[]"
-                                                    class="form-control qc_amt" id="qc_amt" />
-                                            </div>
-                                            <button type="button"
-                                                class="btn btn-danger btn-sm ms-2 removeQc mt-auto">×</button>
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                                 <div class="col-md-4 mt-1 mb-2">
                                     <label for="qc_grand_price" class="form-label">Total QC
                                         Cost</label>
-                                    <input type="number" step="0.01" name="qc_grand_price"
+                                    <input type="number" step="0.01"
+                                        value="{{ $production->productionGp->qc_grand_price }}" name="qc_grand_price"
                                         class="form-control qc_grand_price" id="qc_grand_price" readonly />
                                 </div>
                                 <!--end::Quality Control Cost-->
@@ -486,33 +563,39 @@
                                 <div class="col-md-3 ms-3 mt-1 mb-2">
                                     <label for="grand_total" class="form-label">Grand Total</label>
                                     <input type="number" step="0.01" name="grand_total"
+                                        value="{{ $production->productionGt->grand_total }}"
                                         class="form-control grand_total" id="grand_total" readonly />
                                 </div>
                                 <div class="col-md-3 mt-1 mb-2">
                                     <label for="final_qty" class="form-label">Actual Production Qty</label>
-                                    <input type="number" step="0.01" name="final_qty" class="form-control final_qty"
-                                        id="final_qty" />
+                                    <input type="number" step="0.01"
+                                        value="{{ $production->productionGt->final_qty }}" name="final_qty"
+                                        class="form-control final_qty" id="final_qty" />
                                 </div>
                                 <div class="col-md-2 mt-1 mb-2">
-                                        <label for="final_unit" class="form-label">Unit</label>
-                                        <select name="final_unit" class="form-control" id="final_unit">
-                                            <option selected disabled>Select Unit</option>
-                                            <option value="ml">ml</option>
-                                            <option value="gm">gm</option>
-                                            <option value="kg">Kg</option>
-                                            <option value="ltr">Ltr</option>
-                                        </select>
-                                    </div>
+                                    <label for="final_unit" class="form-label">Unit</label>
+                                    <select name="final_unit" class="form-control" id="final_unit">
+                                        <option value="ml" @if ($production->yield_unit == 'ml') selected @endif>ml
+                                        </option>
+                                        <option value="gm" @if ($production->yield_unit == 'gm') selected @endif>gm
+                                        </option>
+                                        <option value="Kg" @if ($production->yield_unit == 'Kg') selected @endif>Kg
+                                        </option>
+                                        <option value="Ltr" @if ($production->yield_unit == 'Ltr') selected @endif>Ltr
+                                        </option>
+                                    </select>
+                                </div>
                                 <div class="col-md-3 mt-1 mb-2">
                                     <label for="unit_cost" class="form-label">Cost per Unit</label>
-                                    <input type="number" step="0.01" name="unit_cost" class="form-control unit_cost"
-                                        id="unit_cost" readonly />
+                                    <input type="number" step="0.01"
+                                        value="{{ $production->productionGt->unit_cost }}" name="unit_cost"
+                                        class="form-control unit_cost" id="unit_cost" readonly />
                                 </div>
                             </div>
                             <!--end::Body-->
                             <!--begin::Footer-->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                             <!--end::Footer-->
                         </form>
@@ -529,29 +612,6 @@
 @endsection
 
 @push('script')
-    {{-- Raw Material Batch No............ --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const dateInput = document.getElementById('date');
-            const batchInput = document.getElementById('batch_no');
-            const serial = "{{ $newSerial }}";
-
-            // Date change হলে ব্যাচ নাম্বার তৈরি করো
-            dateInput.addEventListener('change', function() {
-                if (this.value) {
-                    const dateObj = new Date(this.value);
-                    const dd = String(dateObj.getDate()).padStart(2, '0');
-                    const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
-                    const yy = String(dateObj.getFullYear()).slice(-2);
-                    batchInput.value = `${dd}${mm}${yy}${serial}`;
-                } else {
-                    batchInput.value = '';
-                }
-            });
-        });
-    </script>
-
-    {{-- Raw Material Batch Size............ --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const exQtyInput = document.getElementById('ex_qty');
@@ -568,7 +628,6 @@
             exUnitSelect.addEventListener('change', updateBatchSize);
         });
     </script>
-
     {{-- Raw Material Price............ --}}
     <script>
         document.addEventListener('change', function(e) {

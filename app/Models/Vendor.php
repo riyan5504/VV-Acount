@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OverheadCost extends Model
+class Vendor extends Model
 {
     use HasFactory;
-    protected $guarded =[];
+    protected $guarded = [];
 
-    public function production()
+    public function purchase()
     {
-        return $this->belongsTo(Production::class, 'pro_id', 'id');
+        return $this->hasMany(Purchase::class, 'vendor_id', 'id');
     }
 }

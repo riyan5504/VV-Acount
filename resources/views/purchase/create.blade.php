@@ -32,118 +32,123 @@
                 <div class="col-md-12">
                     <!--begin::Quick Example-->
                     <div class="card card-primary card-outline mb-4">
-                        <!--begin::Form-->
-                        <form action="{{ url('/production/product/store') }}" method="POST">
+                        <form action="{{ url('/purchase/store') }}" method="POST">
                             @csrf
-                            <!--begin::Product-->
                             <div class="card-body">
-                                <div class="row">
-
-                                    {{-- Vendor Details --}}
+                                {{-- Start Vendor Details Section --}}
+                                <div id="vendorsContainer" class="border-0 shadow-sm">
                                     <div
-                                        class="bg-primary text-white d-flex justify-content-between align-items-center mb-1 px-2 py-2">
+                                        class="bg-primary text-white d-flex justify-content-between align-vendors-center mb-2 px-2 py-2 rounded">
                                         <h4 class="mb-0">Vendor Details</h4>
                                     </div>
 
-                                    <div class="col-md-4 mb-3">
-                                        <label for="v_name" class="form-label">Vendor Name</label>
-                                        <input type="text" name="v_name" class="form-control" id="v_name" required />
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="number" name="phone" class="form-control" id="phone" />
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" name="email" class="form-control" id="email" />
-                                    </div>
-                                    <div class="col-md-8 mb-3">
-                                        <label for="address" class="form-label">Address</label>
-                                        <textarea name="address" class="form-control" id="address" rows="1" required></textarea>
-                                    </div>
-
-                                    {{-- Product Details....... --}}
-
-                                    <div class="col-md-2 mb-3">
-                                        <label for="date" class="form-label">Purchase Date</label>
-                                        <input type="date" name="date" class="form-control" id="date" required />
-                                    </div>
-
-                                    <div class="col-md-2 mb-3">
-                                        <label for="purchase_no" class="form-label">Invoice Number</label>
-                                        <input type="text" name="purchase_no" class="form-control" id="purchase_no" />
-                                    </div>
-
-                                    {{-- Start::Item Entry........... --}}
-                                    <div class="row border-0 shadow-sm" id="itemsContainer">
-                                        <div
-                                            class="bg-primary text-white d-flex justify-content-between align-items-center mb-1 px-2 py-2">
-                                            <h4 class="mb-0">Item Details</h4>
-                                            <button type="button" id="addItem" class="btn btn-light btn-sm text-dark">+
-                                                Add Item</button>
+                                    <!-- ✅ Proper Row Structure -->
+                                    <div class="row g-2 align-vendors-end mb-2">
+                                        <div class="col-md-5">
+                                            <label for="vendor_name" class="form-label">Vendor Name</label>
+                                            <input type="text" name="vendor_name" class="form-control vendor_name"
+                                                id="vendor_name" required>
                                         </div>
 
-                                        <!-- ✅ First Row (with labels) -->
-                                        <div class="item-row row g-2 mb-1">
-                                            <div class="col-md-3">
-                                                <label for="item_name" class="form-label">Item Name</label>
-                                                <input type="text" name="item_name[]" id="item_name"
-                                                    class="form-control item_name" />
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label for="pack_size" class="form-label">Pack Size</label>
-                                                <input type="number" name="pack_size[]" class="form-control pack_size" />
-                                            </div>
-                                            <div class="col-md-1">
-                                                <label for="unit" class="form-label">Unit</label>
-                                                <select name="unit" class="form-control unit">
-                                                    <option selected disabled>Select Unit</option>
-                                                    <option value="ml">ml</option>
-                                                    <option value="gm">gm</option>
-                                                    <option value="kg">Kg</option>
-                                                    <option value="ltr">Ltr</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <label for="qty" class="form-label">Quentity</label>
-                                                <input type="number" step="0.01" name="qty[]"
-                                                    class="form-control qty" />
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label for="unit_price" class="form-label">Unit Price</label>
-                                                <input type="number" step="0.01" name="unit_price[]"
-                                                    class="form-control unit_price" />
-                                            </div>
-                                            <div class="col-md-3 d-flex">
-                                                <div class="w-100">
-                                                    <label for="total_price" class="form-label">Total Price</label>
-                                                    <input type="number" step="0.01" name="total_price[]"
-                                                        class="form-control total_price"readonly />
-                                                </div>
-                                                <button type="button"
-                                                    class="btn btn-danger btn-sm ms-2 removeItem mt-auto">×</button>
-                                            </div>
+                                        <div class="col-md-3">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            <input type="text" name="phone" class="form-control phone" id="phone">
                                         </div>
-                                    </div>
-                                    {{-- End::Item Entry........... --}}
+                                        <div class="col-md-4">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" name="email" class="form-control email" id="email">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label for="address" class="form-label">Address</label>
+                                            <textarea name="address" class="form-control address" id="address" rows="1" required></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="date" class="form-label">Date</label>
+                                            <input type="date" name="date" class="form-control date" id="date"
+                                                required>
+                                        </div>
 
-                                    <div class="col-md-4 mb-3">
-                                        <label for="grand_total" class="form-label">Grand Total</label>
-                                        <input type="number" step="0.01" name="grand_total"
-                                            class="form-control grand_total" readonly />
+                                        <div class="col-md-2 mb-3">
+                                            <label for="purchase_no" class="form-label">Invoice Number</label>
+                                            <input type="text" name="purchase_no" class="form-control" id="purchase_no"
+                                                value="{{ $newPurchaseNo ?? '' }}" readonly />
+                                        </div>
+
                                     </div>
                                 </div>
-                                <!--end::Product-->
+                                {{-- End Vendor Details Section --}}
+
+                                {{-- Start Item Details Section --}}
+                                <div id="itemsContainer" class="border-0 shadow-sm">
+                                    <div
+                                        class="bg-primary text-white d-flex justify-content-between align-items-center mb-2 px-2 py-2 rounded">
+                                        <h4 class="mb-0">Item Details</h4>
+                                        <button type="button" id="addItem"
+                                            class="btn btn-light btn-sm text-dark fw-bold">
+                                            + Add Item
+                                        </button>
+                                    </div>
+
+                                    <!-- ✅ Proper Row Structure -->
+                                    <div class="item-row row g-2 align-items-end mb-2">
+                                        <div class="col-md-3">
+                                            <label class="form-label">Item Name</label>
+                                            <input type="text" name="item_name[]" class="form-control item_name"
+                                                required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">Select Category</label>
+                                            <select name="cat_id[]" class="form-control" required>
+                                                <option selected disabled>Select Category</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="form-label">Size</label>
+                                            <input type="number" name="pack_size[]" class="form-control pack_size">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="form-label">Unit</label>
+                                            <input type="text" name="unit[]" class="form-control unit">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="form-label">Qty</label>
+                                            <input type="number" name="qty[]" class="form-control qty" required>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="form-label">Unit Price</label>
+                                            <input type="number" step="0.01" name="unit_price[]"
+                                                class="form-control unit_price" required>
+                                        </div>
+                                        <div class="col-md-2 d-flex align-items-end">
+                                            <div class="w-100">
+                                                <label class="form-label">Total Price</label>
+                                                <input type="number" step="0.01" name="total_price[]"
+                                                    class="form-control total_price" readonly>
+                                            </div>
+                                            <button type="button" class="btn btn-danger btn-sm ms-2 removeItem">
+                                                ×
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- End Item Details Section --}}
+
+                                <div class="col-md-4 mt-3">
+                                    <label class="form-label">Grand Total</label>
+                                    <input type="number" step="0.01" name="grand_total"
+                                        class="form-control grand_total" readonly>
+                                </div>
+
                             </div>
-                            <!--end::Body-->
-                            <!--begin::Footer-->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
-                            <!--end::Footer-->
                         </form>
-                        <!--end::Form-->
                     </div>
+
                 </div>
                 <!--end::Col-->
             </div>
@@ -168,13 +173,19 @@
 
                 // Label বাদ
                 newRow.querySelectorAll('label').forEach(label => label.remove());
+
                 // Input clear
                 newRow.querySelectorAll('input').forEach(input => input.value = '');
+                // Select reset
+                newRow.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+
                 // id remove (duplicate সমস্যা এড়াতে)
                 newRow.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
 
                 container.appendChild(newRow);
                 attachRowListeners(newRow);
+                calculateGrandTotal();
+
             });
 
             // ✅ Row remove

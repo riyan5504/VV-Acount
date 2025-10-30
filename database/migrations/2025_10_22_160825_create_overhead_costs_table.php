@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('overhead_costs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pro_id');
+            $table->string('overhead_type')->nullable();
+            $table->double('fo_cost_amt')->nullable();
             $table->timestamps();
         });
     }

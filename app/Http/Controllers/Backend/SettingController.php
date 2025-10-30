@@ -27,6 +27,23 @@ class SettingController extends Controller
 
     public function saveItemEntry(Request $request)
     {
+        // Generate item code
+        $name = strtoupper($request->name); // বড়হাতের অক্ষরে রূপান্তর
+        $words = explode(' ', $name); // নাম ভাগ করো
+        $prefix = '';
+
+        // প্রতিটি শব্দের প্রথম অক্ষর নাও
+        foreach ($words as $w) {
+            $prefix .= substr($w, 0, 1);
+        }
+
+        // সর্বশেষ item code বের করো
+        $lastItem = Item::latest('id')->first();
+        $nextNumber = $lastItem ? ($lastItem->id + 1) : 1;
+
+        // সংখ্যা তিন ডিজিটে সেট করো (যেমন 001, 002)
+        $code = $prefix . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
         $exists = Item::where('code', $request->code)
             ->orWhere('name', $request->name)
             ->exists();
@@ -36,7 +53,7 @@ class SettingController extends Controller
         }
         $items = new Item();
 
-        $items->code = $request->code;
+        $items->code = $code;
         $items->name = $request->name;
         $items->cat_id = $request->cat_id;
         $items->pack_size = $request->pack_size;
@@ -49,7 +66,7 @@ class SettingController extends Controller
         $items = Item::with('category')->get();
 
         return view('backend.items.create', compact('categories', 'items'))
-        ->with('success', 'Item saved successfully.');
+            ->with('success', 'Item saved successfully.');
     }
 
     public function editItemEntry($id)
@@ -105,7 +122,7 @@ class SettingController extends Controller
 
         $categories = Category::all();
         return view('backend.category.create', compact('categories'))
-        ->with('success', 'Category saved successfully.');
+            ->with('success', 'Category saved successfully.');
     }
     public function settingsCategoryEdit($id)
     {
@@ -119,7 +136,7 @@ class SettingController extends Controller
         $category->name = $request->cat_name;
         $category->save();
         return redirect('/settings/category-entry')
-        ->with('success', 'Category update successfully.');
+            ->with('success', 'Category update successfully.');
     }
     public function settingsCategoryDelete($id)
     {

@@ -24,4 +24,14 @@ class Item extends Model
     {
         return $this->hasMany(Production::class, 'item_id', 'id');
     }
+
+    public function purchase()
+    {
+        return $this->hasMany(Purchase::class, 'item_id', 'id');
+    }
+
+    public function purchaseItem()
+    {
+        return $this->hasMany(PurchaseItem::class, 'item_id', 'id');
+    }
 }

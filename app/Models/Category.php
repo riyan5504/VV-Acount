@@ -14,4 +14,8 @@ class Category extends Model
     {
         return $this->hasMany(Item::class, 'cat_id', 'id');
     }
+    public function purchase()
+    {
+        return $this->hasMany(Purchase::class, 'cat_id', 'id');
+    }
 }

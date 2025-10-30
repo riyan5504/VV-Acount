@@ -8,12 +8,12 @@
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-0">Manufacturing</h3>
+                            <h3 class="mb-0">Purchase</h3>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-end">
                                 <li class="breadcrumb-item"><a href="{{url('/dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Manufacturing</li>
+                                <li class="breadcrumb-item active" aria-current="page">Purchase</li>
                             </ol>
                         </div>
                     </div>
@@ -32,9 +32,9 @@
                         <div class="col-lg-3 col-6">
                             <!--begin::Small Box Widget 1-->
                             <div class="small-box">
-                                <a href="{{url('/production/product/add')}}">
+                                <a href="{{url('/purchase/create')}}">
                                     <div class="inner">
-                                        <p>Products</p>
+                                        <p>Purchase Entry</p>
                                     </div>
                                 </a>
                             </div>
@@ -46,7 +46,7 @@
                             <div class="small-box">
                                 <a href="#">
                                     <div class="inner">
-                                        <p>Raw Materials</p>
+                                        <p>Purchase List</p>
                                     </div>
                                 </a>
                             </div>
@@ -56,27 +56,16 @@
                         <div class="col-lg-3 col-6">
                             <!--begin::Small Box Widget 3-->
                             <div class="small-box">
-                                <a href="{{url('/production/list')}}">
+                                <a href="#">
                                     <div class="inner">
-                                        <p>Production Batches</p>
+                                        <p>Vendor List</p>
                                     </div>
                                 </a>
                             </div>
                             <!--end::Small Box Widget 3-->
                         </div>
                         <!--end::Col-->
-                        <div class="col-lg-3 col-6">
-                            <!--begin::Small Box Widget 4-->
-                            <div class="small-box">
-                                <a href="#">
-                                    <div class="inner">
-                                        <p>Costing</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <!--end::Small Box Widget 4-->
-                        </div>
-                        <!--end::Col-->
+                        
                         <div class="col-lg-3 col-6">
                             <!--begin::Small Box Widget 4-->
                             <div class="small-box">

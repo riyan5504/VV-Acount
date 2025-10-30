@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('depreciations', function (Blueprint $table) {
+        Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pro_id');
-            $table->string('machine_name')->nullable();
-            $table->double('depreciation_rate')->nullable();
-            $table->double('machine_cost_amt')->nullable();
+            $table->string('vendor_name');
+            $table->integer('phone');
+            $table->string('email')->nullable();
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('depreciations');
+        Schema::dropIfExists('vendors');
     }
 };
